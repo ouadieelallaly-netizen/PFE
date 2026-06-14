@@ -81,184 +81,60 @@ content="width=device-width,
 initial-scale=1.0">
 
 <title>Dashboard Admin</title>
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#f4f4f4;
-    padding:40px;
-}
-
-/* HEADER */
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
-    flex-wrap:wrap;
-    gap:20px;
-}
-
-.topbar h1{
-    font-size:50px;
-}
-
-/* BUTTONS */
-
-.actions{
-    display:flex;
-    gap:15px;
-}
-
-.btn{
-    padding:15px 25px;
-    border-radius:12px;
-    text-decoration:none;
-    color:white;
-    font-weight:bold;
-}
-
-.add{
-    background:green;
-}
-
-.logout{
-    background:red;
-}
-
-/* SEARCH */
-
-.search-form{
-    display:flex;
-    gap:10px;
-    margin-bottom:30px;
-}
-
-.search-form input{
-    flex:1;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
-    box-shadow:
-    0 5px 15px
-    rgba(0,0,0,0.1);
-}
-
-.search-form button{
-    padding:15px 25px;
-    border:none;
-    border-radius:10px;
-    background:#111;
-    color:white;
-    cursor:pointer;
-}
-
-/* STATS */
-
-.stats{
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    margin-bottom:40px;
-}
-
-.card-stat{
-    background:white;
-    border-radius:20px;
-    padding:30px;
-    box-shadow:
-    0 10px 25px
-    rgba(0,0,0,0.1);
-}
-
-.card-stat h3{
-    color:#777;
-    margin-bottom:10px;
-}
-
-.card-stat h2{
-    font-size:35px;
-}
-
-/* TABLE */
-
-.table-container{
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:
-    0 10px 25px
-    rgba(0,0,0,0.1);
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    background:#111;
-    color:white;
-    padding:20px;
-}
-
-td{
-    padding:20px;
-    text-align:center;
-    border-bottom:
-    1px solid #eee;
-}
-
-tr:hover{
-    background:#f9f9f9;
-}
-
-.product-img{
-    width:90px;
-    height:70px;
-    object-fit:cover;
-    border-radius:10px;
-}
-
-.edit{
-    background:orange;
-    color:white;
-    padding:10px 15px;
-    text-decoration:none;
-    border-radius:8px;
-    margin-right:10px;
-}
-
-.delete{
-    background:red;
-    color:white;
-    padding:10px 15px;
-    text-decoration:none;
-    border-radius:8px;
-}
-
-.no-result{
-    text-align:center;
-    color:red;
-    margin:20px 0;
-    font-size:22px;
-}
-
-</style>
-
+<link rel="stylesheet" href="assets/admin.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+<div class="admin-layout">
+    <div class="sidebar">
 
+    <h2>AutoParts</h2>
+
+   <ul>
+
+    <li>
+        <a href="dashboard.php">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+    </li>
+
+    <li>
+        <a href="ajouter.php">
+            <i class="fa-solid fa-plus"></i>
+            Ajouter Produit
+            
+        </a>
+    </li>
+    <li>
+        <a
+        class="btn"
+        style="background:#2563eb;"
+        href="commandes.php">
+
+        Commandes
+
+        </a>
+        </li>
+    <li>
+        <a href="../index.php">
+            <i class="fa-solid fa-globe"></i>
+            Voir Site
+        </a>
+    </li>
+
+    <li>
+        <a href="logout.php">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+    </li>
+
+</ul>
+
+</div>
+<div class="container">
 <div class="topbar">
 
     <h1>
@@ -429,6 +305,7 @@ Supprimer
 </table>
 
 </div>
-
+</div>
+</div>
 </body>
 </html>

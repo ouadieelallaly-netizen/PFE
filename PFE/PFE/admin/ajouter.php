@@ -18,13 +18,56 @@ if(isset($_POST['ajouter'])){
 
     /* upload image */
 
-    $imageName = $_FILES['image']['name'];
-    $tmpName = $_FILES['image']['tmp_name'];
+   $image = $_FILES['image'];
 
-    move_uploaded_file(
-        $tmpName,
-        "../uploads/" . $imageName
-    );
+$imageName = time() . "_" . basename($image['name']);
+
+$tmpName = $image['tmp_name'];
+
+$imageSize = $image['size'];
+
+$imageError = $image['error'];
+
+$allowed = [
+    'jpg',
+    'jpeg',
+    'png',
+    'webp'
+];
+
+$imageExt =
+strtolower(
+    pathinfo(
+        $imageName,
+        PATHINFO_EXTENSION
+    )
+);
+
+/* validation */
+
+if(
+    !in_array(
+        $imageExt,
+        $allowed
+    )
+){
+    die("Format image invalide");
+}
+
+if($imageSize > 5000000){
+    die("Image trop grande");
+}
+
+if($imageError !== 0){
+    die("Erreur upload image");
+}
+
+/* upload */
+
+move_uploaded_file(
+    $tmpName,
+    "../uploads/" . $imageName
+);
 
     /* insert */
 
@@ -60,102 +103,9 @@ $categories = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Ajouter Pièce</title>
+    <link rel="stylesheet" href="assets/admin.css">
 </head>
 <body>
-    <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#f4f4f4;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px;
-}
-
-.form-container{
-    width:100%;
-    max-width:600px;
-}
-
-form{
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
-}
-
-form h2{
-    text-align:center;
-    margin-bottom:30px;
-    font-size:35px;
-    color:#111;
-}
-
-input,
-textarea,
-select{
-    width:100%;
-    padding:15px;
-    margin-bottom:20px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    font-size:16px;
-    outline:none;
-    transition:0.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-    border-color:red;
-    box-shadow:0 0 10px rgba(255,0,0,0.2);
-}
-
-textarea{
-    resize:none;
-    height:120px;
-}
-
-input[type="file"]{
-    border:none;
-}
-
-button{
-    width:100%;
-    padding:16px;
-    border:none;
-    border-radius:12px;
-    background:red;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    background:#cc0000;
-    transform:translateY(-2px);
-}
-
-.back-btn{
-    display:block;
-    text-align:center;
-    margin-top:20px;
-    text-decoration:none;
-    color:#111;
-    font-weight:bold;
-}
-
-</style>
-
 <div class="form-container">
 
 <form method="POST"

@@ -36,7 +36,6 @@ $pieces = $stmt->fetchAll();
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -46,72 +45,137 @@ $pieces = $stmt->fetchAll();
 
     <title>Pièces</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<div class="pieces-page">
+
+<!-- NAVBAR -->
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo">
+            AutoParts
+        </div>
+
+        <ul class="menu">
+            <li><a href="index.php">Accueil</a></li>
+            <li><a href="#">Pièces</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="cart.php">Panier</a></li>
+        </ul>
+
+    </nav>
+</header>
 
 <section class="pieces">
 
     <h2>Pièces Disponibles</h2>
-    <form method="GET">
 
-    <input
-        type="hidden"
-        name="id"
-        value="<?= $categorie_id; ?>"
-    >
+    <!-- SEARCH -->
 
-    <input
-        type="text"
-        name="search"
-        placeholder="Rechercher une pièce..."
-        value="<?= $search; ?>"
-    >
+    <form method="GET" class="search-form">
 
-    <button type="submit">
-        Rechercher
-    </button>
+        <input
+            type="hidden"
+            name="id"
+            value="<?= $categorie_id; ?>"
+        >
 
-</form>
+        <input
+            type="text"
+            name="search"
+            placeholder="Rechercher une pièce..."
+            value="<?= $search; ?>"
+        >
 
-    <div class="cards">
+        <button type="submit">
+            Rechercher
+        </button>
+
+    </form>
+
+    <!-- CARDS -->
+
+    <div class="pieces-grid">
+
+        <?php if(empty($pieces)): ?>
+
+            <h3 style="color:red;">
+                Aucune pièce trouvée
+            </h3>
+
+        <?php endif; ?>
 
         <?php foreach($pieces as $piece): ?>
 
-        <div class="card">
+        <a
+        class="card-link"
+        href="details.php?id=<?= $piece['id']; ?>">
 
-            <img
+            <div class="card">
+
+                <img
                 src="uploads/<?= $piece['image']; ?>"
-                alt=""
-            >
+                alt="">
 
-            <h3>
-                <?= $piece['nom_piece']; ?>
-            </h3>
+                <div class="card-overlay">
 
-            <p>
-                <?= $piece['description']; ?>
-            </p>
+                    <h3>
+                        <?= $piece['nom_piece']; ?>
+                    </h3>
 
-            <p>
-                <strong>
-                    <?= $piece['prix']; ?> DH
-                </strong>
-            </p>
+                    <p style="color:white;">
+                        <?= $piece['prix']; ?> DH
+                    </p>
 
-            <a href="details.php?id=<?= $piece['id']; ?>">
-                <button>
-                    Voir Plus
-                </button>
-            </a>
+                    <span class="card-btn">
+                        Voir détails
+                    </span>
 
-        </div>
+                </div>
+
+            </div>
+
+        </a>
 
         <?php endforeach; ?>
 
     </div>
 
 </section>
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div>
+            <h3>AutoParts</h3>
+            <p>
+                Votre spécialiste en pièces
+                automobiles neuves et
+                d'occasion.
+            </p>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>📞 +212 6 00 00 00 00</p>
+            <p>📧 autoparts@gmail.com</p>
+            <p>📍 Tanger, Maroc</p>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p class="copyright">
+        © 2026 AutoParts
+    </p>
+
+</footer>
 
 </body>
 </html>

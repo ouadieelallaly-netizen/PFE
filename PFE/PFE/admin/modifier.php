@@ -53,19 +53,64 @@ if(isset($_POST['modifier'])){
 
     /* nouvelle image */
 
-    if(!empty($_FILES['image']['name'])){
+   if(!empty($_FILES['image']['name'])){
 
-        $imageName =
-        $_FILES['image']['name'];
+    $image = $_FILES['image'];
 
-        $tmpName =
-        $_FILES['image']['tmp_name'];
+    $imageName =
+    time() . "_" .
+    basename($image['name']);
 
-        move_uploaded_file(
-            $tmpName,
-            "../uploads/" . $imageName
-        );
+    $tmpName =
+    $image['tmp_name'];
+
+    $imageSize =
+    $image['size'];
+
+    $imageError =
+    $image['error'];
+
+    $allowed = [
+        'jpg',
+        'jpeg',
+        'png',
+        'webp'
+    ];
+
+    $imageExt =
+    strtolower(
+        pathinfo(
+            $imageName,
+            PATHINFO_EXTENSION
+        )
+    );
+
+    /* validation */
+
+    if(
+        !in_array(
+            $imageExt,
+            $allowed
+        )
+    ){
+        die("Format image invalide");
     }
+
+    if($imageSize > 5000000){
+        die("Image trop grande");
+    }
+
+    if($imageError !== 0){
+        die("Erreur upload image");
+    }
+
+    /* upload */
+
+    move_uploaded_file(
+        $tmpName,
+        "../uploads/" . $imageName
+    );
+}
 
     /* update */
 
@@ -101,79 +146,7 @@ if(isset($_POST['modifier'])){
 <head>
     <meta charset="UTF-8">
     <title>Modifier Pièce</title>
-
-    <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial;
-        }
-
-        body{
-            background:#f4f4f4;
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            padding:30px;
-        }
-
-        .form-container{
-            width:100%;
-            max-width:600px;
-        }
-
-        form{
-            background:white;
-            padding:40px;
-            border-radius:20px;
-            box-shadow:
-            0 10px 30px
-            rgba(0,0,0,0.1);
-        }
-
-        h2{
-            text-align:center;
-            margin-bottom:30px;
-        }
-
-        input,
-        textarea,
-        select{
-            width:100%;
-            padding:15px;
-            margin-bottom:20px;
-            border:1px solid #ddd;
-            border-radius:10px;
-        }
-
-        textarea{
-            resize:none;
-            height:120px;
-        }
-
-        button{
-            width:100%;
-            padding:15px;
-            border:none;
-            border-radius:10px;
-            background:red;
-            color:white;
-            cursor:pointer;
-        }
-
-        .back-btn{
-            display:block;
-            text-align:center;
-            margin-top:20px;
-            text-decoration:none;
-            color:black;
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="assets/admin.css">
 </head>
 <body>
 

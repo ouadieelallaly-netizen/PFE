@@ -3,7 +3,7 @@
 $host = "localhost";
 $dbname = "pieces_auto";
 $user = "root";
-$password = "wadie2006";
+$password = "wadie@2006";
 
 try {
 
