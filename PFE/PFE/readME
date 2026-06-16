@@ -1,0 +1,166 @@
+# 🚗 AutoParts - Cahier des Charges
+
+## 📌 Présentation du projet
+
+**AutoParts** est une application web dédiée à la vente de pièces automobiles d'occasion. Elle permet aux utilisateurs de rechercher des pièces, consulter leurs détails, les ajouter au panier et valider leurs commandes en ligne.
+
+---
+
+# 🎯 Objectifs du projet
+
+L'objectif principal de ce projet est de développer une plateforme web simple, moderne et intuitive permettant aux clients de :
+
+* Rechercher des pièces automobiles d'occasion.
+* Consulter les détails des produits.
+* Ajouter des produits au panier.
+* Passer une commande facilement.
+
+---
+
+# 🛠 Technologies utilisées
+
+* HTML5
+* CSS3
+* JavaScript
+* PHP
+* MySQL
+* PDO
+* XAMPP
+* Visual Studio Code
+
+---
+
+# ✅ Besoins fonctionnels
+
+L'application doit permettre :
+
+* Afficher les catégories de pièces automobiles.
+* Afficher les produits disponibles.
+* Rechercher une pièce par son nom.
+* Filtrer les produits par catégorie.
+* Consulter les détails d'une pièce.
+* Ajouter un produit au panier.
+* Modifier la quantité des produits.
+* Supprimer un produit du panier.
+* Calculer le montant total de la commande.
+* Saisir les informations du client.
+* Valider une commande.
+* Enregistrer les commandes dans la base de données.
+* Activer le mode sombre (Dark Mode).
+
+---
+
+# 🔒 Besoins non fonctionnels
+
+L'application doit être :
+
+* Facile à utiliser.
+* Responsive (ordinateur, tablette, mobile).
+* Rapide et performante.
+* Sécurisée grâce aux requêtes préparées PDO.
+* Facile à maintenir et à faire évoluer.
+
+---
+
+# 👨‍💼 Administration
+
+L'administrateur peut :
+
+* Se connecter à l'espace d'administration.
+* Ajouter une pièce automobile.
+* Modifier une pièce existante.
+* Supprimer une pièce.
+* Consulter les commandes des clients.
+* Afficher les détails d'une commande.
+
+---
+
+# 🗄 Base de données
+
+## Table ADMIN
+
+| Champ    | Type    |
+| -------- | ------- |
+| id       | INT     |
+| email    | VARCHAR |
+| password | VARCHAR |
+
+## Table CATEGORIES
+
+| Champ | Type    |
+| ----- | ------- |
+| id    | INT     |
+| nom   | VARCHAR |
+| image | VARCHAR |
+
+## Table PIECES
+
+| Champ        | Type    |
+| ------------ | ------- |
+| id           | INT     |
+| nom_piece    | VARCHAR |
+| description  | TEXT    |
+| prix         | DECIMAL |
+| image        | VARCHAR |
+| categorie_id | INT     |
+
+## Table COMMANDES
+
+| Champ         | Type     |
+| ------------- | -------- |
+| id            | INT      |
+| nom_client    | VARCHAR  |
+| telephone     | VARCHAR  |
+| adresse       | TEXT     |
+| date_commande | DATETIME |
+
+## Table DETAILS_COMMANDE
+
+| Champ       | Type |
+| ----------- | ---- |
+| id          | INT  |
+| commande_id | INT  |
+| piece_id    | INT  |
+| quantite    | INT  |
+
+---
+
+# 🔗 Relations
+
+* CATEGORIES (1) ---- (N) PIECES
+* COMMANDES (1) ---- (N) DETAILS_COMMANDE
+* PIECES (1) ---- (N) DETAILS_COMMANDE
+
+---
+
+# 📷 Fonctionnalités principales
+
+* Page d'accueil.
+* Recherche des produits.
+* Filtrage des catégories avec JavaScript.
+* Page détails.
+* Gestion du panier.
+* Validation des commandes.
+* Interface administrateur.
+* Dark Mode.
+* Design responsive.
+
+---
+
+# 🚀 Perspectives d'amélioration
+
+* Gestion du stock.
+* Authentification des utilisateurs.
+* Historique des commandes.
+* Paiement en ligne.
+* Génération de facture PDF.
+
+---
+
+# 👨‍🎓 Réalisé par
+
+**OUADIE EL-ALLALY**
+
+## Projet de Fin d'Études 2025-2026
+
+### AutoParts - Application Web de Vente de Pièces Automobiles d'Occasion
